@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ЗАПРОС СВЕДЕНИЙ О СТРАХОВОМ СТАЖЕ</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+  </head>
+  <body>
+
+    <div class="container">
+      <form method="post" id="data_form" name="form">
+
+        <div id="request_form">
+          <h2>Форма запроса</h2>
+
+          <div class="element">
+            <label for="last_name">Фамилия</label>
+            <input type="text" name="lastname" id="last_name" maxlength="40" required>
+          </div>
+
+          <div class="element">
+            <label for="first_name">Имя</label>
+            <input type="text" name="firstname" id="first_name" maxlength="40" required>
+          </div>
+
+          <div class="element">
+            <label for="patronymic">Отчество</label>
+            <input type="text" name="patronymic" id="patronymic" maxlength="40">
+          </div>
+
+          <div class="element">
+            <label for="snils">СНИЛС</label>
+            <input type="text" name="snils" id="snils" pattern="\d{3}-\d{3}-\d{3} \d{2}" required>
+          </div>
+
+          <div class="element">
+            <label for="birthdate">Дата рождения</label>
+            <input type="date" name="birthdate" id="birthdate" required>
+          </div>
+
+          <div class="element">
+            <label for="data_availability">Наличие данных</label>
+            <select th:field="dataAvailability" id="data_availability" required>
+             <option value="ДА">ДА</option>
+             <option value="НЕТ">НЕТ</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="experience_duration">
+          <h2>Общая продолжительность страхового стажа на дату обращения гражданина</h2>
+
+          <div class="element">
+            <label for="experience_years">Общая продолжительность страхового стажа лет</label>
+            <input type="number" name="years" id="experience_years" min="0" max="999" required>
+          </div>
+
+          <div class="element">
+            <label for="experience_months">Общая родолжительность страхового стажа месяцев</label>
+            <input type="number" name="months" id="experience_months" min="0" max="99" required>
+          </div>
+
+          <div class="element">
+            <label for="experience_days">Общая продолжительность страхового стажа дней</label>
+            <input type="number" name="days" id="experience_days" min="0" max="99" required>
+          </div>
+        </div>
+
+        <div class="button">
+          <button type="submit" id="save">Cохранить</button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="container">
+      <h2 id="request_header">Итоговый запрос</h2>
+      <div class="element" id="container_request">
+          <div id="label_request">Запрос</div>
+          <div id="final_request"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
