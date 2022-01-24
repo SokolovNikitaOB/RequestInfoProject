@@ -2,14 +2,16 @@
 document.getElementById('save').addEventListener('click', function(evt) {
     evt.preventDefault();
 
-    let doc = document.implementation.createDocument(null, 'ЗАПРОС_СВЕДЕНИЙ_О_СТРАХОВОМ_СТАЖЕ');
-    let generalDuration = document.createElementNS(null, editString(document.getElementById('experience_duration').getElementsByTagName('h2')[0].innerText));
+    const doc = document.implementation.createDocument(null, 'ЗАПРОС_СВЕДЕНИЙ_О_СТРАХОВОМ_СТАЖЕ');
+    const generalDuration = document.createElementNS(null, editString(document.getElementById('experience_duration').getElementsByTagName('h2')[0].innerText));
 
-    let labels = document.getElementsByTagName('label');
+    const labels = document.getElementsByTagName('label');
 
+    let element;
+    let input;
     for(let i = 0; i < labels.length; i++){
-      let element = document.createElementNS(null, editString(labels[i].innerText));
-      let input = document.getElementById(labels[i].getAttribute('for'));
+      element = document.createElementNS(null, editString(labels[i].innerText));
+      input = document.getElementById(labels[i].getAttribute('for'));
 
       //validation
       if(input.validity.valid){
@@ -35,14 +37,14 @@ document.getElementById('save').addEventListener('click', function(evt) {
 
 });
 
-let editString = string => {return string.split(' ').map(word => word = word.charAt(0).toUpperCase() + word.slice(1, word.length)).join('')}
+const editString = string => {return string.split(' ').map(word => word = word.charAt(0).toUpperCase() + word.slice(1, word.length)).join('')}
 
-let getRequest = request => {
+const getRequest = request => {
   document.getElementById('container_request').style.display = 'block';
   document.getElementById('final_request').innerText = formatXml(new XMLSerializer().serializeToString(request));
 }
 
-let formatXml = xml => {
+const formatXml = xml => {
   return xml.replaceAll(/<(.*?)>(.*)<\/(\1)>/g, (...matches) =>{
       if(`${matches[2]}`.match(/<(.*?)>(.*)<\/(\1)>/)){
         return `<${matches[1]}>\n` + formatXml(`${matches[2]}`) + `\n</${matches[1]}>`
